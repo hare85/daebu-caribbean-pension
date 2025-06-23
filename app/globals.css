@@ -1,0 +1,921 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #333;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header Styles */
+.header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 1rem 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+
+.nav-links a:hover {
+  opacity: 0.8;
+}
+
+/* Mobile Menu Button */
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 1001;
+}
+
+/* Hamburger Menu */
+.hamburger {
+  display: block;
+  width: 25px;
+  height: 20px;
+  position: relative;
+}
+
+.hamburger span {
+  display: block;
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  background: white;
+  border-radius: 3px;
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition: .25s ease-in-out;
+}
+
+.hamburger span:nth-child(1) {
+  top: 0px;
+}
+
+.hamburger span:nth-child(2) {
+  top: 8px;
+}
+
+.hamburger span:nth-child(3) {
+  top: 16px;
+}
+
+.hamburger.active span:nth-child(1) {
+  top: 8px;
+  transform: rotate(135deg);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+  left: -60px;
+}
+
+.hamburger.active span:nth-child(3) {
+  top: 8px;
+  transform: rotate(-135deg);
+}
+
+/* Hero Section */
+.hero {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+}
+
+.hero-slideshow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+}
+
+.hero-slide.active {
+  opacity: 1;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4));
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.cta-button {
+  background: #ff6b6b;
+  color: white;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+.cta-button:hover {
+  background: #ee5a5a;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+/* Hero 인디케이터 */
+.hero-indicators {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 3;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.indicator.active {
+  background: white;
+  border-color: white;
+}
+
+.indicator:hover {
+  border-color: white;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+/* Section Styles */
+.section {
+  padding: 4rem 0;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: #333;
+}
+
+.section:nth-child(even) {
+  background: #f8f9fa;
+}
+
+/* Photo Gallery */
+.photo-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.photo-item {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.photo-item:hover {
+  transform: translateY(-5px);
+}
+
+.photo-item img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.photo-item-content {
+  padding: 1.5rem;
+}
+
+.photo-item h3 {
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+/* Facilities Grid */
+.facilities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.facility-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.facility-card:hover {
+  transform: translateY(-5px);
+}
+
+.facility-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+
+.facility-card h3 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+/* Gallery Container */
+.gallery-container {
+  width: 100%;
+  margin: 2rem 0;
+}
+
+/* Desktop Slider Styles */
+.desktop-slider {
+  display: block;
+  width: 100%;
+  background: #f8f9fa;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  padding: 20px;
+}
+
+.slider-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.main-image-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 20px;
+}
+
+.main-image {
+  max-width: 100%;
+  max-height: 500px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.main-image:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+}
+
+.slider-btn {
+  background: rgba(0,0,0,0.7);
+  color: white;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.slider-btn:hover {
+  background: rgba(0,0,0,0.9);
+  transform: scale(1.1);
+}
+
+.slider-btn.prev {
+  margin-right: 10px;
+}
+
+.slider-btn.next {
+  margin-left: 10px;
+}
+
+.slider-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.slider-indicators .indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0,0,0,0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.slider-indicators .indicator.active {
+  background: #667eea;
+  transform: scale(1.2);
+}
+
+.slider-indicators .indicator:hover {
+  background: #667eea;
+  opacity: 0.7;
+}
+
+/* Mobile Gallery Styles */
+.mobile-gallery {
+  display: none;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+}
+
+.mobile-image-item {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.mobile-image-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.mobile-image-item img:hover {
+  transform: scale(1.02);
+}
+
+/* Responsive Design */
+@media (max-width: 767px) {
+  .desktop-slider {
+    display: none;
+  }
+  
+  .mobile-gallery {
+    display: flex;
+  }
+  
+  .gallery-container {
+    margin: 1rem 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .desktop-slider {
+    display: block;
+  }
+  
+  .mobile-gallery {
+    display: none;
+  }
+}
+
+/* PC Room Specs */
+.pc-specs {
+  background: #f1f3f4;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+.pc-specs h4 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.pc-specs ul {
+  list-style: none;
+}
+
+.pc-specs li {
+  margin-bottom: 0.5rem;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.pc-specs li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #4CAF50;
+}
+
+/* Location Section */
+.location-section {
+  text-align: left;
+}
+
+/* 새로운 지도 컨테이너 */
+.new-map-container {
+  width: 100%;
+  height: 400px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 2rem 0 0 0;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  position: relative;
+  cursor: pointer;
+}
+
+.new-map-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+}
+
+.new-map-container::after {
+  content: '클릭하여 네이버 지도에서 보기';
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.new-map-container:hover::after {
+  opacity: 1;
+}
+
+/* 지도 하단 정보 */
+.map-bottom-info {
+  background: white;
+  padding: 20px;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: -4px;
+}
+
+.location-details h3.pension-name {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin: 0 0 8px 0;
+  color: #333;
+}
+
+.location-details p.address {
+  font-size: 1rem;
+  color: #666;
+  margin: 0;
+}
+
+.map-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.map-btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.directions-btn {
+  background: #ff6b35;
+  color: white;
+}
+
+.directions-btn:hover {
+  background: #e55a2b;
+  transform: translateY(-1px);
+}
+
+.view-map-btn {
+  background: #ff8c42;
+  color: white;
+}
+
+.view-map-btn:hover {
+  background: #e67a35;
+  transform: translateY(-1px);
+}
+
+.btn-icon {
+  font-size: 16px;
+}
+
+/* 펜션 정보 그리드 */
+.pension-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.info-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  border: 1px solid #f0f0f0;
+}
+
+.info-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.info-icon {
+  font-size: 1.2rem;
+}
+
+.info-header h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.info-content {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.info-content p {
+  margin-bottom: 0.5rem;
+  color: #666;
+}
+
+/* 시간 정보 스타일 */
+.time-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.time-info:last-child {
+  border-bottom: none;
+}
+
+.time-label {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.time-value {
+  color: #333;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* 편의시설 그리드 */
+.amenities-card {
+  grid-column: span 2;
+}
+
+.amenities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 1rem;
+}
+
+.amenity-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.amenity-item:hover {
+  background: #e9ecef;
+  transform: translateY(-2px);
+}
+
+.amenity-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.amenity-item span:last-child {
+  font-size: 0.8rem;
+  color: #666;
+  font-weight: 500;
+}
+
+/* 기존 추가 정보 섹션 (호환성) */
+.additional-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+  padding: 2rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+
+.info-section h3 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.info-section p {
+  margin-bottom: 0.5rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* 기존 스타일 (호환성을 위해 유지) */
+.map-container {
+  width: 100%;
+  height: 400px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 2rem 0;
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.location-info {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  margin-top: 2rem;
+}
+
+/* Footer */
+.footer {
+  background: #333;
+  color: white;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  /* Show mobile menu button */
+  .mobile-menu-btn {
+    display: block;
+  }
+  
+  /* Hide and transform nav links for mobile */
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    transition: right 0.3s ease-in-out;
+    padding-top: 0;
+  }
+  
+  .nav-links.active {
+    right: 0;
+  }
+  
+  .nav-links li {
+    opacity: 0;
+    transform: translateX(20px);
+    animation: slideIn 0.3s ease-in-out forwards;
+  }
+  
+  .nav-links.active li {
+    animation-delay: 0.1s;
+  }
+  
+  .nav-links.active li:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  
+  .nav-links.active li:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  
+  .nav-links.active li:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+  
+  .nav-links.active li:nth-child(5) {
+    animation-delay: 0.5s;
+  }
+  
+  .nav-links a {
+    font-size: 1.2rem;
+    padding: 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  .nav-links a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    opacity: 1;
+  }
+  
+  @keyframes slideIn {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .photo-gallery {
+    grid-template-columns: 1fr;
+  }
+  
+  .facilities-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .container {
+    padding: 0 15px;
+  }
+  
+  .logo {
+    font-size: 1.3rem;
+  }
+  
+  /* 모바일에서 지도 하단 정보 레이아웃 */
+  .map-bottom-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px;
+  }
+  
+  .map-buttons {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .map-btn {
+    flex: 1;
+    justify-content: center;
+  }
+  
+  /* 모바일에서 추가 정보 섹션 */
+  .additional-info {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+  
+  /* 모바일에서 펜션 정보 그리드 */
+  .pension-info-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .amenities-card {
+    grid-column: span 1;
+  }
+  
+  .amenities-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem;
+  }
+  
+  .amenity-item {
+    padding: 0.8rem 0.5rem;
+  }
+  
+  .amenity-icon {
+    font-size: 1.3rem;
+  }
+  
+  .amenity-item span:last-child {
+    font-size: 0.75rem;
+  }
+}
